@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const LoadMoreBtn = styled(Link)`
+export const LoadMoreBtn = styled.button`
   display: flex;
   justify-content: space-between;
 
@@ -10,7 +9,6 @@ export const LoadMoreBtn = styled(Link)`
   background-position: center;
 
   padding: 8px 16px;
-  margin-left: 10px;
 
   width: 150px;
 

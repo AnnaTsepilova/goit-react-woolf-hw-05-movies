@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const CastCard = styled.li`
-  margin-left: auto;
-  margin-right: auto;
   width: 200px;
 
   overflow: hidden;

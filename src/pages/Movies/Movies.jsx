@@ -11,28 +11,37 @@ import { getQueryMovies } from 'services/moviesApi';
 import * as notify from 'services/notifications';
 
 const Movies = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQueryParams = searchParams.get('query') || '';
+  const searchQueryParams = searchParams.get('search');
 
-  const handleFormSubmit = query => {
-    setSearchQuery(query);
+  const handleFormSubmit = event => {
+    event.preventDefault();
 
-    const newSearchParams = searchQueryParams !== '' && { query };
-    setSearchParams(newSearchParams);
+    const form = event.currentTarget;
+    let query = form.searchQuery.value.toLowerCase();
+    setSearchParams(query !== '' ? { search: query } : {});
+
+    if (query.trim() === '') {
+      return notify.notificationWarning(notify.EMPTY_QUERY_MESSAGE);
+    }
+
+    form.reset();
   };
 
   useEffect(() => {
-    if (!searchQuery) {
+    if (!searchQueryParams) {
       return;
     }
     async function fetchData() {
       try {
         setIsLoading(true);
-        const { data } = await getQueryMovies(searchQuery);
+        const { data } = await getQueryMovies(searchQueryParams);
+
         setMovies(data.results);
+        setIsLoading(false);
 
         if (!data.results.length) {
           notify.notificationError(notify.NO_FOUND_MESSAGE);
@@ -44,13 +53,14 @@ const Movies = () => {
       }
     }
     fetchData();
-  }, [searchQuery]);
+  }, [searchQueryParams]);
 
   return (
     <MoviesPageWrapper>
-      <MoviesSearch onSubmit={handleFormSubmit} />
+      <MoviesSearch onHandleSubmit={handleFormSubmit} />
       <MoviesGalleryWrapper>
         {movies && <MoviesGalleryList movies={movies} />}
+
         {isLoading && <Loader />}
       </MoviesGalleryWrapper>
     </MoviesPageWrapper>

@@ -39,7 +39,7 @@ const Cast = () => {
     fetchData();
   }, [movieId]);
 
-  function handleClickLoadMore() {
+  function handleClickLoadMoreCast() {
     const loadMoreAcc = castLimited.length + castItemsLimit;
     setCastLimited(cast.slice(0, loadMoreAcc));
     setShowLoadMore(!(loadMoreAcc >= cast.length));
@@ -53,7 +53,7 @@ const Cast = () => {
         <CastList
           cast={castLimited}
           showLoadMore={showLoadMore}
-          handleClickLoadMore={handleClickLoadMore}
+          handleClickLoadMore={handleClickLoadMoreCast}
         />
       )}
     </>

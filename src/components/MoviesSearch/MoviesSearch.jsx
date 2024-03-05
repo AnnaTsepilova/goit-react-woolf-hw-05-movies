@@ -8,23 +8,10 @@ import {
   SearchFormInput,
 } from 'components/MoviesSearch/MoviesSearch.styled';
 
-import * as notify from 'services/notifications';
-
-const MoviesSearch = ({ onSubmit }) => {
-  const handleSubmit = event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    let query = form.searchQuery.value.toLowerCase();
-    if (query.trim() === '') {
-      return notify.notificationWarning(notify.EMPTY_QUERY_MESSAGE);
-    }
-    onSubmit(query);
-    form.reset();
-  };
-
+const MoviesSearch = ({ onHandleSubmit }) => {
   return (
     <SearchWrapper>
-      <SearchForm onSubmit={handleSubmit}>
+      <SearchForm onSubmit={onHandleSubmit}>
         <SearchFormInput
           type="text"
           name="searchQuery"

@@ -15,13 +15,18 @@ const MovieGalleryItem = ({ movie }) => {
     moviePosterSrc = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   }
 
+  let movieTitle = movie.title;
+  if (movieTitle.length >= 55) {
+    movieTitle = movieTitle.substring(0, 55) + ' ...';
+  }
+
   return (
     <>
       <MovieGalleryCard>
         <LinkWrapper to={`/movies/${movie.id}`} state={{ from: location }}>
           <MoviePoster src={moviePosterSrc} alt={movie.title} width={270} />
           <Description>
-            <MovieTitle>{movie.title}</MovieTitle>
+            <MovieTitle>{movieTitle}</MovieTitle>
             <MovieDateRelease>
               Release date: {new Date(movie.release_date).toLocaleDateString()}
             </MovieDateRelease>

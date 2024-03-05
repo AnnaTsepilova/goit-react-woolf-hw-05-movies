@@ -47,4 +47,5 @@
 
 ### Фінальний результат
 
-![screencapture](./assets/screencapture.png)
+![screencapture](./assets/screencapture_1.png)
+![screencapture](./assets/screencapture_2.png)

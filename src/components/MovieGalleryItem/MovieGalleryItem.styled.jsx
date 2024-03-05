@@ -37,7 +37,7 @@ export const MoviePoster = styled.img`
 export const Description = styled.div`
   position: relative;
   padding: 0 24px;
-  min-height: 135px;
+  min-height: 110px;
 `;
 
 export const MovieTitle = styled.h2`

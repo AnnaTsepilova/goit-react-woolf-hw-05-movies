@@ -16,8 +16,8 @@ const MovieGalleryItem = ({ movie }) => {
   }
 
   let movieTitle = movie.title;
-  if (movieTitle.length >= 55) {
-    movieTitle = movieTitle.substring(0, 55) + ' ...';
+  if (movieTitle.length >= 34) {
+    movieTitle = movieTitle.substring(0, 34) + ' ...';
   }
 
   return (
